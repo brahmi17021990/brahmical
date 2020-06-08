@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calender</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+		h1 {
+		  Background-color:#F96748;
+		  text-align: center;
+		  height:8%;
+		  font-family:Arial, Helvetica, sans-serif;
+		  Border-radious:5px;
+		  font-color:#0D0B0B;
+		  font-size:45px;
+		  padding-top:10px;
+		  border-radius: 6px !important;
+          border-width: 5px !important;     		  
+		}
+		
+		h2{
+		   text-align: center;
+		}
+		
+		.headercal1{
+		  Background-color:#4DDBE1;
+		  height:10%;
+		  font-family:Arial, Helvetica, sans-serif;
+		  Border-radious:5px;
+		  font-color:#0D0B0B;
+		  font-size:30px;
+		  padding-top:5px;
+		  padding-bottom:5px;
+		  border-radius: 6px !important;
+          border-width: 5px !important;     		
+		}
+		
+		html,body {
+		  height: 100%;
+		  margin: 0
+		}
+		.main {
+		  height:92%
+		}
+		p{
+		 font-family: Arial, Helvetica, sans-serif;
+		}
+    </style>
+</head>
+<body>
+	<h1>Brahmi Calender</h1>
+	<div class="main">
+	  <div class="calender1">
+	    <h2 class="headercal1">First 7 months</h2>
+		<div id="container1">
+		</div>
+	  </div>
+	  <div style="padding-top:5px;>
+	  </div>
+	   <div class="calender1">
+	    <h2 class="headercal1">Second 7 months</h2>
+		<div id="container2">
+		</div>
+	  </div>
+	  <div style="padding-top:5px;>
+	  </div>
+	   <div class="calender1">
+	    <h2 class="headercal1">Two 40 days</h2>
+		<div id="container3">
+		</div>
+	  </div>
+	  <div style="padding-top:5px;>
+	  </div>
+	   <div class="calender1">
+	    <h2 class="headercal1">Final 40 Days</h2>
+		<div id="container4">
+		</div>
+	  </div>
+	  </div>
+	<script>
+	
+	$(function () {
+	
+	 let incalenderDate = new Date(2020,05,08);	
+	 let incalenderEndDate = new Date(2020,05,09);
+	 incalenderEndDate.setDate(incalenderEndDate.getDate() + 214);
+	 
+	 SetCalender(incalenderDate,incalenderEndDate,'container1');
+	 
+	 let secondincalenderDate = new Date(2021,00,08);	
+	 let secondincalenderEndDate = new Date(2021,00,09);
+	 secondincalenderEndDate.setDate(secondincalenderEndDate.getDate() + 210);
+	 
+	 SetCalender(secondincalenderDate,secondincalenderEndDate,'container2');
+	 
+	 let thirdincalenderDate = new Date(2021,07,06);	
+	 let thirdcalenderEndDate = new Date(2021,07,07);
+	 thirdcalenderEndDate.setDate(thirdcalenderEndDate.getDate() + 80);
+	 
+	 SetCalender(thirdincalenderDate,thirdcalenderEndDate,'container3');
+	 
+	 let finalcalenderDate = new Date(2021,10,12);	
+	 let finalcalenderEndDate = new Date(2021,10,13);
+	 finalcalenderEndDate.setDate(finalcalenderEndDate.getDate() + 40);
+	 
+	 SetCalender(finalcalenderDate,finalcalenderEndDate,'container4');
+	 
+	 function SetCalender(calenderDate,calenderEndDate,containerid){
+	 
+	 var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+     var dayNames= ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+	 var table_body = '<table style="width:100%;" border="1">';
+	    //calender 1
+	 <!-- let calenderDate = new Date(2020,04,22);	 -->
+	 <!-- let calenderEndDate = new Date(2020,04,23); -->
+	 <!-- calenderEndDate.setDate(calenderEndDate.getDate() + 210); -->
+	 
+       for(var i=0;i<4;i++){
+			if(calenderEndDate < calenderDate){
+				  break;
+			}
+            table_body+='<tr>';
+            for(var j=0;j<4;j++){
+                table_body += '<td height="200px;">';
+				if(calenderEndDate < calenderDate){
+				  break;
+				}
+				 var innertable_body = '<table style="width:100%;" border="3" border-color="red" cellspacing="0" cellpadding="0">';
+				 for(var p=0;p<5;p++){ 
+				  if(calenderEndDate < calenderDate){
+				   break;
+				  }
+				   innertable_body += '<tr>';
+				   for(var k=0;k<3;k++){
+
+					if(calenderEndDate < calenderDate){
+					  break;
+					}
+					calenderDate.setDate(calenderDate.getDate() + 1);
+					let currentDate = new Date();
+					 if(calenderDate.getFullYear() == currentDate.getFullYear() && calenderDate.getDate() == currentDate.getDate() && calenderDate.getMonth() == currentDate.getMonth()){
+					  innertable_body += '<td height="40px;" style="padding:0px;background-color:#CD19F5">';
+					 }
+					 else if(calenderDate < currentDate){
+					  innertable_body += '<td height="40px;" style="padding:0px;background-color:#19F52A;">';
+					 }
+					 else{
+				       innertable_body += '<td height="40px;" style="padding:0px;background-color:#FAC684;">';
+					 }
+					 
+					 let dateDispaly = '';
+					 if(calenderDate <= calenderEndDate){
+					    dateDispaly = '<p style="padding-top:5px;text-align:center;font-size:18px;font-weight:200;font-color:#070E9E;!important">'+ calenderDate.getDate() + ' ' + monthNames[calenderDate.getMonth()] + ' ' + calenderDate.getFullYear() + '</p>' + '<p style="text-align:center;font-size:20px;;font-weight:bold;">' + dayNames[calenderDate.getDay()] + '</p>';
+					 }
+					 innertable_body += dateDispaly;
+					 innertable_body += '</td>';
+				   }
+				   innertable_body += '</tr>';
+				 }
+				 innertable_body +='</table>';
+                table_body += innertable_body;
+                table_body +='</td>';
+            }
+            table_body+='</tr>';
+          }
+            table_body+='</table>';
+           $('#'+containerid).html(table_body);
+		   }
+    });
+	
+	</script>
+</body>
+</html>
